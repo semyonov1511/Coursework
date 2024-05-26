@@ -4,6 +4,8 @@
 
 package com.mycompany.coursework;
 
+import Interface.GUI;
+
 /**
  *
  * @author semyo
@@ -11,6 +13,6 @@ package com.mycompany.coursework;
 public class Coursework {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        (new GUI()).setVisible(true);
     }
 }
