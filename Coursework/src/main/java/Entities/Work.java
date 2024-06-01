@@ -6,7 +6,7 @@ public class Work {
     public int standartTime;
     public int workersQuantity;
     public String type;
-    public String part;
+    public String room;
     public double depth;
 
     public String getName() {
@@ -25,8 +25,8 @@ public class Work {
         return type;
     }
 
-    public String getPart() {
-        return part;
+    public String getRoom() {
+        return room;
     }
 
     public double getDepth() {
@@ -49,8 +49,8 @@ public class Work {
         this.type = type;
     }
 
-    public void setPart(String part) {
-        this.part = part;
+    public void setRoom(String room) {
+        this.room = room;
     }
 
     public void setDepth(double depth) {
