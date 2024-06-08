@@ -8,6 +8,7 @@ public class Work {
     public String type;
     public String room;
     public double depth;
+    public int price;
 
     public String getName() {
         return name;
@@ -32,6 +33,8 @@ public class Work {
     public double getDepth() {
         return depth;
     }
+
+    public int getPrice() { return price; }
     
     public void setName(String name) {
         this.name = name;
@@ -55,5 +58,9 @@ public class Work {
 
     public void setDepth(double depth) {
         this.depth = depth;
+    }
+
+    public void setPrice(int price){
+        this.price = price;
     }
 }

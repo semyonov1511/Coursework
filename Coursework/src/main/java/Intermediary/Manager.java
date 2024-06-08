@@ -9,14 +9,14 @@ import java.util.logging.Logger;
 public class Manager {
 
     ExcelHandler handler;
-
+    Repository repository = new Repository();
     public Manager() {
         handler = new ExcelHandler();
     }
 
     public void importWorksData(File file) {
         try {
-            handler.readExcel(file);
+            repository.setList(handler.readExcel(file));
         } catch (IOException ex) {
         }
     }

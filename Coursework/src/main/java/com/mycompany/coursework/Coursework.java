@@ -6,10 +6,6 @@ package com.mycompany.coursework;
 
 import Interface.GUI;
 
-/**
- *
- * @author semyo
- */
 public class Coursework {
 
     public static void main(String[] args) {
