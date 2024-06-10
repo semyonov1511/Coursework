@@ -1,10 +1,10 @@
 package ExcelRelated;
 
-import Entities.Work;
+import Works.Work;
 import java.io.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 
-import Intermediary.Repository;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.*;
 
@@ -12,6 +12,7 @@ public class ExcelHandler {
 
     public ArrayList<Work> readExcel(File file) throws FileNotFoundException, IOException {
         int i = 0;
+        HashMap<String, ArrayList<Work>> passportsAndNames = new HashMap<>();
         ArrayList<Work> list = new ArrayList<>();
         try (FileInputStream fis = new FileInputStream(file); Workbook workbook = new XSSFWorkbook(fis)) {
             Sheet sheet = workbook.getSheetAt(0);

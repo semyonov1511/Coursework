@@ -1,6 +1,6 @@
 package Intermediary;
 
-import Entities.Work;
+import Works.Work;
 
 import java.util.ArrayList;
 
