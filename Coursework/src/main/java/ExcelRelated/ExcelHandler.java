@@ -10,7 +10,7 @@ import org.apache.poi.xssf.usermodel.*;
 
 public class ExcelHandler {
 
-    public ArrayList<Work> readExcel(File file) throws FileNotFoundException, IOException {
+    public ArrayList<Work> readWorks(File file) throws FileNotFoundException, IOException {
         int i = 0;
         HashMap<String, ArrayList<Work>> passportsAndNames = new HashMap<>();
         ArrayList<Work> list = new ArrayList<>();
@@ -31,6 +31,10 @@ public class ExcelHandler {
             e.printStackTrace();
         }
         return list;
+    }
+
+    public void readObjects(File file) throws FileNotFoundException, IOException{
+
     }
     
     private Work setParameters(Row row){

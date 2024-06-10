@@ -5,7 +5,6 @@ import Materials.Material;
 import java.util.ArrayList;
 
 public class Part {
-    ArrayList<Material> partsList;
     private String material;
     private double area;
 
