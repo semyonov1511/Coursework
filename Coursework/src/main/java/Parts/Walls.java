@@ -1,4 +1,4 @@
 package Parts;
 
-public class Walls {
+public class Walls extends Part{
 }

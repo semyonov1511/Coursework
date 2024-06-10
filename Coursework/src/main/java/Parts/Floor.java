@@ -1,4 +1,4 @@
 package Parts;
 
-public class Floor {
+public class Floor extends Part {
 }

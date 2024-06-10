@@ -1,4 +1,4 @@
 package Parts;
 
-public class Ceiling {
+public class Ceiling extends Part{
 }
