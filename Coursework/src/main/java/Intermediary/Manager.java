@@ -16,7 +16,8 @@ public class Manager {
 
     public void importWorksData(File file) {
         try {
-            repository.setList(handler.readExcel(file));
+            handler.readObjects(new File("Вар2_приложение1.xlsx"));
+            repository.setList(handler.readWorks(file));
         } catch (IOException ex) {
         }
     }
