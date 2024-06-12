@@ -34,7 +34,7 @@ public class ExcelHandler {
         return list;
     }
 
-    public void readObjects(File file) throws FileNotFoundException, IOException{
+    public Map<String, Map<String, Object>> readObjects(File file) throws FileNotFoundException, IOException{
         Map<String, Map<String, Object>> data = new HashMap<>();
 
         try (FileInputStream fileInputStream = new FileInputStream(file);
@@ -50,16 +50,15 @@ public class ExcelHandler {
                 }
                 Map<String, Object> rowData = new HashMap<>();
                 rowData = setObjectsMap(rowData,row);
-                data.put("Код помещения " + ((int)row.getCell(0).getNumericCellValue()), rowData); // ключ в формате "rowX"
+                data.put(row.getCell(1).getStringCellValue(), rowData); // ключ в формате "rowX"
                 rowIndex++;
             }
         }
         System.out.println(data);
+        return (data);
     }
 
     private Map<String, Object> setObjectsMap(Map<String, Object> map, Row row){
-
-        map.put("Название помещения",row.getCell(1).getStringCellValue());
 
         map.put("Расположение",row.getCell(2).getStringCellValue());
 

@@ -14,10 +14,15 @@ public class Manager {
         handler = new ExcelHandler();
     }
 
+    public void importObjectData() {
+        try {
+            repository.setObjectsMap(handler.readObjects(new File("Вар2_приложение1.xlsx")));
+        } catch (IOException ex) {
+        }
+    }
     public void importWorksData(File file) {
         try {
-            handler.readObjects(new File("Вар2_приложение1.xlsx"));
-            repository.setList(handler.readWorks(file));
+            repository.setWorksList(handler.readWorks(file));
         } catch (IOException ex) {
         }
     }
