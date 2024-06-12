@@ -17,11 +17,13 @@ public class Manager {
     public void importObjectData() {
         try {
             repository.setObjectsMap(handler.readObjects(new File("Вар2_приложение1.xlsx")));
+
         } catch (IOException ex) {
         }
     }
     public void importWorksData(File file) {
         try {
+            importObjectData();
             repository.setWorksList(handler.readWorks(file));
         } catch (IOException ex) {
         }

@@ -8,6 +8,7 @@ import java.util.Map;
 
 public class Room {
     Map<String, Part> partsMap = new HashMap<>();;
+    private String name;
     private double length;
     private double width;
     private double height;
@@ -17,6 +18,14 @@ public class Room {
     private double floorThickness;
     private double radiationPower;
     private double radiationActivity;
+
+    public String getName(){
+        return this.name;
+    }
+
+    public void setName(String name){
+        this.name = name;
+    }
 
     public double getLength() {
         return length;
