@@ -14,8 +14,10 @@ public class Setter {
         Map<String, Room> roomsMap = new HashMap<>();
         for (String key : map.keySet()) {
             Room room = new Room();
+            room.addFloor();
+            room.addWalls();
             setRoomParameters(room, key);
-            System.out.println("Параметры комнаты " + room.getName() + ": Длина " + room.getLength() + " Объем " + room.getVolume());
+            setFloorParameters(room, key);
         }
         return roomsMap;
     }
@@ -28,6 +30,13 @@ public class Setter {
         room.setVolume((Double) map.get(key).get("Объем"));
         room.setWidth((Double) map.get(key).get("Ширина"));
         //return room;
+    }
+    public void setFloorParameters(Room room, String key){
+        room.getFloor().setCoverageArea((Double) map.get(key).get("Площадь покрытия пола"));
+        room.getWalls().setCoverageArea((Double) map.get(key).get("Площадь покрытия стен"));
+        System.out.println("Площадь покрытия пола " + room.getFloor().getCoverageArea());
+        System.out.println("Площадь покрытия стен " + room.getWalls().getCoverageArea());
+        System.out.println("");
     }
 
 

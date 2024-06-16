@@ -4,8 +4,7 @@ public class Walls extends Part{
 
     private double thickness;
 
-    public Walls(String material, double area, double thickness) {
-        super(material, area);
+    public void setThickness(double thickness) {
         this.thickness = thickness;
     }
 

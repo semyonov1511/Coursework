@@ -2,13 +2,22 @@ package Parts;
 
 public class Floor extends Part {
     private double thickness;
+    private String material;
 
-    public Floor(String material, double area, double thickness) {
-        super(material, area);
+    public double getThickness() {
+        return this.thickness;
+    }
+
+    public void setThickness(double thickness) {
         this.thickness = thickness;
     }
 
-    public double getThickness() {
-        return thickness;
+    public String getMaterial() {
+        return this.material;
     }
+
+    public void setMaterial(String material) {
+        this.material = material;
+    }
+    
 }

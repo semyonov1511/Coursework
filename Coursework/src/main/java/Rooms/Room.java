@@ -14,8 +14,6 @@ public class Room {
     private double height;
     private double area;
     private double volume;
-    private double wallThickness;
-    private double floorThickness;
     private double radiationPower;
     private double radiationActivity;
 
@@ -83,16 +81,24 @@ public class Room {
         this.radiationActivity = radiationActivity;
     }
 
-    public void addFloor(String material, double area, double thickness){
-        partsMap.put("Пол",new Floor(material, area, thickness));
+    public void addFloor(){
+        partsMap.put("Пол",new Floor());
     }
 
-    public void addWalls(String material, double area, double thickness){
-        partsMap.put("Стены",new Walls(material, area, thickness));
+    public void addWalls(){
+        partsMap.put("Стены",new Walls());
     }
 
-    public void addCeiling(String material, double area){
-        partsMap.put("Потолок",new Ceiling(material, area));
+    public void addCeiling(){
+        partsMap.put("Потолок",new Ceiling());
+    }
+
+    public Floor getFloor(){
+        return (Floor) partsMap.get("Пол");
+    }
+
+    public Walls getWalls(){
+        return (Walls) partsMap.get("Стены");
     }
 
 }
