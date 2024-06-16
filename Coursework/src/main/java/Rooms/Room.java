@@ -101,4 +101,8 @@ public class Room {
         return (Walls) partsMap.get("Стены");
     }
 
+    public Ceiling getCeiling(){
+        return (Ceiling) partsMap.get("Потолок");
+    }
+
 }
