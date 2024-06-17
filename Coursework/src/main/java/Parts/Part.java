@@ -12,7 +12,6 @@ public class Part {
     private double contaminationDepth; // глубина загрязнения
     private double coverageArea; // площадь покрытия
 
-
     public String getCoatingMaterial() {
         return this.coatingMaterial;
     }

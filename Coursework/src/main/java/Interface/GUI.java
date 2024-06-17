@@ -7,9 +7,15 @@ package Interface;
 import Intermediary.Manager;
 import java.io.File;
 import javax.swing.JFileChooser;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
 
 public class GUI extends javax.swing.JFrame {
+
     Manager manager;
+    DefaultTreeModel model;
+    DefaultMutableTreeNode objects = new DefaultMutableTreeNode("Objects");
+
     public GUI() {
         manager = new Manager();
         initComponents();
@@ -21,6 +27,8 @@ public class GUI extends javax.swing.JFrame {
 
         readingStatusButton = new javax.swing.JLabel();
         readWorkInfoFile = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        objectsTree = new javax.swing.JTree();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -33,12 +41,18 @@ public class GUI extends javax.swing.JFrame {
             }
         });
 
+        javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("root");
+        objectsTree.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
+        jScrollPane1.setViewportView(objectsTree);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(249, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 237, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(readWorkInfoFile, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(readingStatusButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -52,6 +66,10 @@ public class GUI extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 210, Short.MAX_VALUE)
                 .addComponent(readingStatusButton, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 338, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -66,6 +84,15 @@ public class GUI extends javax.swing.JFrame {
         }
         File file = new File(chooser.getSelectedFile().getAbsolutePath());
         manager.importWorksData(file);
+        System.out.println(manager.getObjects());
+        for (String key : manager.getObjects().keySet()) {
+            System.out.println("dsad");
+            DefaultMutableTreeNode room = new DefaultMutableTreeNode(key);
+            objects.add(room);
+        }
+        model = (DefaultTreeModel) objectsTree.getModel();
+        model.setRoot(objects);
+        objectsTree.setModel(model);
     }//GEN-LAST:event_readWorkInfoFileActionPerformed
 
     /**
@@ -104,6 +131,8 @@ public class GUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTree objectsTree;
     private javax.swing.JButton readWorkInfoFile;
     private javax.swing.JLabel readingStatusButton;
     // End of variables declaration//GEN-END:variables

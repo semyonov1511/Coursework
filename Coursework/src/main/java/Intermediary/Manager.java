@@ -1,10 +1,10 @@
 package Intermediary;
 
 import ExcelRelated.ExcelHandler;
+import Rooms.Room;
 import java.io.File;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.Map;
 
 public class Manager {
 
@@ -17,15 +17,19 @@ public class Manager {
     public void importObjectData() {
         try {
             repository.setObjectsMap(handler.readObjects(new File("Вар2_приложение1.xlsx")));
-
         } catch (IOException ex) {
         }
     }
+
     public void importWorksData(File file) {
         try {
             importObjectData();
             repository.setWorksList(handler.readWorks(file));
         } catch (IOException ex) {
         }
+    }
+    
+    public Map<String, Room> getObjects(){
+        return repository.getObjectsMap();
     }
 }
