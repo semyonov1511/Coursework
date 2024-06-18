@@ -17,6 +17,10 @@ public class Repository {
         this.worksList = list;
     }
 
+    public ArrayList<Work> getWorksList(){
+        return this.worksList;
+    }
+
     public void setObjectsMap(Map<String, Map<String, Object>> objectsMap) {
         setter.setMap(objectsMap);
         this.objectsMap = setter.setRooms();

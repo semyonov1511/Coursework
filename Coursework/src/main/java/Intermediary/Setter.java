@@ -21,7 +21,6 @@ public class Setter {
             setFloorParameters(room, key);
             setWallsParameters(room,key);
             setCeilingParameters(room,key);
-            System.out.println(room.getName() + " " + room.getCeiling().getCoverageArea() + " " + room.getFloor().getThickness());
             roomsMap.put(room.getName(), room);
         }
         return roomsMap;

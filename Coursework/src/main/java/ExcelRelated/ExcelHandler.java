@@ -13,7 +13,6 @@ public class ExcelHandler {
 
     public ArrayList<Work> readWorks(File file) throws FileNotFoundException, IOException {
         int i = 0;
-        HashMap<String, ArrayList<Work>> passportsAndNames = new HashMap<>();
         ArrayList<Work> list = new ArrayList<>();
         try (FileInputStream fis = new FileInputStream(file); Workbook workbook = new XSSFWorkbook(fis)) {
             Sheet sheet = workbook.getSheetAt(0);
@@ -54,7 +53,6 @@ public class ExcelHandler {
                 rowIndex++;
             }
         }
-        System.out.println(data);
         return (data);
     }
 

@@ -19,6 +19,7 @@ public class GUI extends javax.swing.JFrame {
     public GUI() {
         manager = new Manager();
         initComponents();
+        manager.importObjectData();
     }
 
     @SuppressWarnings("unchecked")
@@ -84,9 +85,8 @@ public class GUI extends javax.swing.JFrame {
         }
         File file = new File(chooser.getSelectedFile().getAbsolutePath());
         manager.importWorksData(file);
-        System.out.println(manager.getObjects());
+        manager.connectObjectsWorks();
         for (String key : manager.getObjects().keySet()) {
-            System.out.println("dsad");
             DefaultMutableTreeNode room = new DefaultMutableTreeNode(key);
             objects.add(room);
         }
