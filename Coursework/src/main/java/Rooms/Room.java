@@ -1,13 +1,14 @@
 package Rooms;
 
 import Parts.*;
+import Works.Work;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 public class Room {
-    Map<String, Part> partsMap = new HashMap<>();;
+    Map<String, Part> partsMap = new HashMap<>();
+    Map<String, Work> worksMap = new HashMap<>();
     private String name;
     private double length;
     private double width;
@@ -16,6 +17,14 @@ public class Room {
     private double volume;
     private double radiationPower;
     private double radiationActivity;
+
+    public void addWork(Work work){
+        worksMap.put(work.getName(),work);
+    }
+
+    public Map<String, Work> getWorks(){
+        return worksMap;
+    }
 
     public String getName(){
         return this.name;

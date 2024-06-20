@@ -5,6 +5,9 @@
 package Interface;
 
 import Intermediary.Manager;
+import Rooms.Room;
+import Works.Work;
+
 import java.io.File;
 import javax.swing.JFileChooser;
 import javax.swing.tree.DefaultMutableTreeNode;
@@ -86,9 +89,13 @@ public class GUI extends javax.swing.JFrame {
         File file = new File(chooser.getSelectedFile().getAbsolutePath());
         manager.importWorksData(file);
         manager.connectObjectsWorks();
-        for (String key : manager.getObjects().keySet()) {
-            DefaultMutableTreeNode room = new DefaultMutableTreeNode(key);
-            objects.add(room);
+        for (Room room : manager.getObjects().values()) {
+            DefaultMutableTreeNode concreteRoom = new DefaultMutableTreeNode(room.getName());
+            for (Work work : room.getWorks().values()){
+                DefaultMutableTreeNode concreteWork = new DefaultMutableTreeNode(work.getName());
+                concreteRoom.add(concreteWork);
+            }
+            objects.add(concreteRoom);
         }
         model = (DefaultTreeModel) objectsTree.getModel();
         model.setRoot(objects);

@@ -42,7 +42,7 @@ public class Manager {
                     .filter(work -> work.getRoom().equals(key))
                     .collect(Collectors.toList());
             for (Work work : filteredWorks){
-                System.out.println("Имя работы - " + work.getName() + ", комната - " + key);
+                repository.getObjectsMap().get(key).addWork(work);
             }
         }
     }

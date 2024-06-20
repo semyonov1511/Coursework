@@ -49,7 +49,7 @@ public class ExcelHandler {
                 }
                 Map<String, Object> rowData = new HashMap<>();
                 rowData = setObjectsMap(rowData,row);
-                data.put(row.getCell(1).getStringCellValue(), rowData); // ключ в формате "rowX"
+                data.put((String) rowData.get("Название помещения"), rowData); // ключ в формате "rowX"
                 rowIndex++;
             }
         }
@@ -57,7 +57,16 @@ public class ExcelHandler {
     }
 
     private Map<String, Object> setObjectsMap(Map<String, Object> map, Row row){
-
+        if (row.getCell(1).getStringCellValue().equals("Ингаляционная")){
+            switch (row.getCell(2).getStringCellValue()){
+                case "Этаж 2" -> map.put("Название помещения", "Ингаляционная 2-й этаж");
+                case "Этаж 1" -> map.put("Название помещения", "Ингаляционная 1-й этаж");
+                default -> map.put("","");
+            }
+        }
+        else {
+            map.put("Название помещения", row.getCell(1).getStringCellValue());
+        }
         map.put("Расположение",row.getCell(2).getStringCellValue());
 
         map.put("Длина",row.getCell(3).getNumericCellValue());
@@ -84,7 +93,6 @@ public class ExcelHandler {
 
         map.put("Мощность дозы излучения",row.getCell(24).getNumericCellValue());
         map.put("Объемная активность излучения",row.getCell(25).getNumericCellValue());
-
         return map;
     }
     

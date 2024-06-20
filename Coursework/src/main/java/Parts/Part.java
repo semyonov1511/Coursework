@@ -1,6 +1,8 @@
 package Parts;
 
 import Materials.Material;
+import Works.Work;
+import org.apache.commons.compress.archivers.ar.ArArchiveEntry;
 
 import java.util.ArrayList;
 
@@ -11,6 +13,15 @@ public class Part {
     private double contaminationArea; // площадь загрязнения
     private double contaminationDepth; // глубина загрязнения
     private double coverageArea; // площадь покрытия
+    private ArrayList<Work> worksList;
+
+    public void setWorksList(ArrayList<Work> worksList){
+        this.worksList = worksList;
+    }
+
+    public ArrayList<Work> getWorksList(){
+        return this.worksList;
+    }
 
     public String getCoatingMaterial() {
         return this.coatingMaterial;
