@@ -9,6 +9,7 @@ public class Work {
     public String room;
     public double depth;
     public int price;
+    public String part;
 
     public String getName() {
         return name;
@@ -35,7 +36,13 @@ public class Work {
     }
 
     public int getPrice() { return price; }
-    
+
+    public String getPart() { return part; }
+
+    public void setPart(String part) {
+        this.part = part;
+    }
+
     public void setName(String name) {
         this.name = name;
     }

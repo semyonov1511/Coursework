@@ -99,6 +99,7 @@ public class ExcelHandler {
     private Work setParameters(Row row){
         Work work = new Work();
         work.setRoom(row.getCell(2).getStringCellValue());
+        work.setPart(row.getCell(3).getStringCellValue());
         work.setName(row.getCell(5).getStringCellValue());
         work.setType(row.getCell(7).getStringCellValue());
         work.setPrice((int)row.getCell(8).getNumericCellValue());

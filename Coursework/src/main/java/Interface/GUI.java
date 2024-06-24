@@ -201,6 +201,7 @@ public class GUI extends javax.swing.JFrame {
     private void calculateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_calculateButtonActionPerformed
         parametersFrame.setVisible(true);
         parametersFrame.setBounds(200, 200, 430, 280);
+        manager.calculateParameters();
     }//GEN-LAST:event_calculateButtonActionPerformed
 
     /**

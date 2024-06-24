@@ -1,5 +1,6 @@
 package Intermediary;
 
+import Calculator.Calculator;
 import ExcelRelated.ExcelHandler;
 import Rooms.Room;
 import Works.Work;
@@ -13,8 +14,10 @@ import java.util.stream.Collectors;
 public class Manager {
 
     ExcelHandler handler;
+    Calculator calculator;
     Repository repository = new Repository();
     public Manager() {
+        calculator = new Calculator();
         handler = new ExcelHandler();
     }
 
@@ -45,5 +48,11 @@ public class Manager {
                 repository.getObjectsMap().get(key).addWork(work);
             }
         }
+
+    }
+
+    public void calculateParameters(){
+        calculator.setMap(repository.getObjectsMap());
+        calculator.calculatePrice();
     }
 }
