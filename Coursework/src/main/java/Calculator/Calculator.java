@@ -33,6 +33,16 @@ public class Calculator {
         return cost;
     }
 
+    public void calculateChipWorkTime(Room room, Work work){
+        double area = getPartArea(room, work);
+        work.setTime(work.getStandartTime()*area/work.getWorkersQuantity());
+    }
+
+    public void calculateChipWorkCost(Room room, Work work){
+        double area = getPartArea(room, work);
+        work.setCost(work.getPrice() * area + work.getTime()*work.getWorkersQuantity()*work.getPrice());
+    }
+
     public void calculateSurfaceWorkTime(Room room, Work work){
         double area = getPartArea(room, work);
         work.setTime(work.getStandartTime()*area/work.getWorkersQuantity());
