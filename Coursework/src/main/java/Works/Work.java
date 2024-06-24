@@ -3,6 +3,7 @@ package Works;
 public class Work {
 
     public String name;
+    public double time;
     public int standartTime;
     public int workersQuantity;
     public String type;
@@ -10,9 +11,14 @@ public class Work {
     public double depth;
     public int price;
     public String part;
+    public double cost;
 
     public String getName() {
         return name;
+    }
+
+    public double getTime() {
+        return time;
     }
 
     public int getStandartTime() {
@@ -26,6 +32,8 @@ public class Work {
     public String getType() {
         return type;
     }
+
+    public double getCost() { return cost; }
 
     public String getRoom() {
         return room;
@@ -70,4 +78,8 @@ public class Work {
     public void setPrice(int price){
         this.price = price;
     }
+
+    public void setTime(double time) { this.time = time; }
+
+    public void setCost(double cost) { this.cost = cost; }
 }

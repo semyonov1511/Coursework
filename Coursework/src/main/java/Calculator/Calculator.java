@@ -16,27 +16,47 @@ public class Calculator {
     }
 
     public double calculatePrice(){
-        double price = 0;
+        double cost = 0;
         for (Room room : this.map.values()) {
             for (Work work : room.getWorks().values()) {
                 if (work.getType().equals("Поверхностная")){
+                    calculateSurfaceWorkTime(room, work);
                     calclulateSurfaceWorkCost(room, work);
+                    cost += work.getCost();
+                }
+                else {
+                    calculateChipWorkTime(room, work);
+                    calculateChipWorkCost(room, work);
                 }
             }
         }
-        return price;
+        return cost;
     }
 
-    public double calclulateSurfaceWorkCost(Room room, Work work){
-        double area = 0;
-        System.out.println("Комната работы " + work.getRoom() + " " + work.getPart());
+    public void calculateSurfaceWorkTime(Room room, Work work){
+        double area = getPartArea(room, work);
+        work.setTime(work.getStandartTime()*area/work.getWorkersQuantity());
+    }
+
+    public void calclulateSurfaceWorkCost(Room room, Work work){
+        double area = getPartArea(room, work);
+        work.setCost(work.getPrice() * area + work.getTime()*work.getWorkersQuantity()*work.getPrice());
+    }
+
+    public double getPartArea(Room room, Work work){
         switch (work.getPart()){
             case "Пол" -> {
-                area = room.getFloor().getCoverageArea();
+                return room.getFloor().getCoverageArea();
             }
-            case "Потолок" -> area = room.getCeiling().getCoverageArea();
-            case "Стены" -> area = room.getWalls().getCoverageArea();
+            case "Потолок" -> {
+                return room.getCeiling().getCoverageArea();
+            }
+            case "Стены" -> {
+                return room.getWalls().getCoverageArea();
+            }
+            default -> {
+                return 0;
+            }
         }
-        return work.getPrice() * area + ;
     }
 }
