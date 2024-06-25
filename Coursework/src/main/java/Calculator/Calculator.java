@@ -19,54 +19,34 @@ public class Calculator {
         double cost = 0;
         for (Room room : this.map.values()) {
             for (Work work : room.getWorks().values()) {
+                double area = room.getPartArea(work);
                 if (work.getType().equals("Поверхностная")){
-                    calculateSurfaceWorkTime(room, work);
-                    calclulateSurfaceWorkCost(room, work);
+                    calculateSurfaceWorkTime(area, work);
+                    calclulateSurfaceWorkCost(area, work);
                     cost += work.getCost();
                 }
                 else {
-                    calculateChipWorkTime(room, work);
-                    calculateChipWorkCost(room, work);
+                    calculateChipWorkTime(area, work);
+                    calculateChipWorkCost(area, work);
                 }
             }
         }
         return cost;
     }
 
-    public void calculateChipWorkTime(Room room, Work work){
-        double area = getPartArea(room, work);
+    public void calculateChipWorkTime(double area, Work work){
         work.setTime(work.getStandartTime()*area/work.getWorkersQuantity());
     }
 
-    public void calculateChipWorkCost(Room room, Work work){
-        double area = getPartArea(room, work);
+    public void calculateChipWorkCost(double area, Work work){
         work.setCost(work.getPrice() * area + work.getTime()*work.getWorkersQuantity()*work.getPrice());
     }
 
-    public void calculateSurfaceWorkTime(Room room, Work work){
-        double area = getPartArea(room, work);
+    public void calculateSurfaceWorkTime(double area, Work work){
         work.setTime(work.getStandartTime()*area/work.getWorkersQuantity());
     }
 
-    public void calclulateSurfaceWorkCost(Room room, Work work){
-        double area = getPartArea(room, work);
+    public void calclulateSurfaceWorkCost(double area, Work work){
         work.setCost(work.getPrice() * area + work.getTime()*work.getWorkersQuantity()*work.getPrice());
-    }
-
-    public double getPartArea(Room room, Work work){
-        switch (work.getPart()){
-            case "Пол" -> {
-                return room.getFloor().getCoverageArea();
-            }
-            case "Потолок" -> {
-                return room.getCeiling().getCoverageArea();
-            }
-            case "Стены" -> {
-                return room.getWalls().getCoverageArea();
-            }
-            default -> {
-                return 0;
-            }
-        }
     }
 }

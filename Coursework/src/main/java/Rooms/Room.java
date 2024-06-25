@@ -114,4 +114,21 @@ public class Room {
         return (Ceiling) partsMap.get("Потолок");
     }
 
+    public double getPartArea(Work work){
+        switch (work.getPart()){
+            case "Пол" -> {
+                return getFloor().getCoverageArea();
+            }
+            case "Потолок" -> {
+                return getCeiling().getCoverageArea();
+            }
+            case "Стены" -> {
+                return getWalls().getCoverageArea();
+            }
+            default -> {
+                return 0;
+            }
+        }
+    }
+
 }
