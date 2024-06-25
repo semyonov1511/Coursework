@@ -199,13 +199,18 @@ public class GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_readWorkInfoFileActionPerformed
 
     private void calculateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_calculateButtonActionPerformed
-        parametersFrame.setVisible(true);
-        parametersFrame.setBounds(200, 200, 430, 280);
-        manager.calculateParameters();
-        costLabel.setText(String.valueOf(manager.calculator.getTotalCost()));
-        timeLabel.setText(String.valueOf(manager.calculator.getTotalTime()));
-        collectiveDoseLabel.setText(String.valueOf(manager.calculator.getCollectiveDose()));
-        individualDoseLabel.setText(String.valueOf(manager.calculator.getIndividualDose()));
+        if (manager.ifWorkRead()){
+            parametersFrame.setVisible(true);
+            parametersFrame.setBounds(200, 200, 430, 280);
+            manager.calculateParameters();
+            costLabel.setText(String.valueOf(manager.calculator.getTotalCost()));
+            timeLabel.setText(String.valueOf(manager.calculator.getTotalTime()));
+            collectiveDoseLabel.setText(String.valueOf(manager.calculator.getCollectiveDose()));
+            individualDoseLabel.setText(String.valueOf(manager.calculator.getIndividualDose()));
+        }
+        else {
+            System.out.println("Прочитайте данные");
+        }
     }//GEN-LAST:event_calculateButtonActionPerformed
 
     /**

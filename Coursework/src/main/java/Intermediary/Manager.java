@@ -51,6 +51,10 @@ public class Manager {
 
     }
 
+    public boolean ifWorkRead(){
+        return !repository.getWorksList().isEmpty();
+    }
+
     public void calculateParameters(){
         calculator.setMap(repository.getObjectsMap());
         calculator.calculate();
