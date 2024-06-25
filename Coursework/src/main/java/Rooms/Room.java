@@ -130,5 +130,20 @@ public class Room {
             }
         }
     }
+    public double getPartThickness(Work work){
+        switch (work.getPart()){
+            case "Потолок" -> {
+                return getFloor().getThickness();
+            }
+            case "Стены" -> {
+                return getWalls().getThickness();
+            }
+            default -> {
+                return 0;
+            }
+        }
+    }
+
+
 
 }

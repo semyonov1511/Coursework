@@ -53,6 +53,6 @@ public class Manager {
 
     public void calculateParameters(){
         calculator.setMap(repository.getObjectsMap());
-        calculator.calculatePrice();
+        calculator.calculate();
     }
 }

@@ -7,9 +7,7 @@ import org.apache.commons.compress.archivers.ar.ArArchiveEntry;
 import java.util.ArrayList;
 
 public class Part {
-    private String material; // материал
-    private String coatingMaterial; // материал покрытия
-    private double thickness; // толщина
+    private String coatingMaterial; // материал покрыт
     private double contaminationArea; // площадь загрязнения
     private double contaminationDepth; // глубина загрязнения
     private double coverageArea; // площадь покрытия
