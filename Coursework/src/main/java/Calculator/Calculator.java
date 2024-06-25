@@ -46,9 +46,9 @@ public class Calculator {
                     calclulateSurfaceWorkCost(area, work);
                 }
                 else {
-                    double thickness = room.getPartThickness(work);
-                    calculateChipWorkTime(thickness, area, work);
-                    calculateChipWorkCost(thickness, area, work);
+                    double depth = room.getPartDepth(work);
+                    calculateChipWorkTime(depth, area, work);
+                    calculateChipWorkCost(depth, area, work);
                 }
                 calculateIndividualDose(work, room);
                 calculateCollectiveDose(work, room);
@@ -61,12 +61,12 @@ public class Calculator {
         this.individualDose /= totalWorks;
     }
 
-    public void calculateChipWorkTime(double thickness, double area, Work work){
-        work.setTime(work.getStandartTime() * area * Math.ceil(thickness/10) / work.getWorkersQuantity());
+    public void calculateChipWorkTime(double depth, double area, Work work){
+        work.setTime(work.getStandartTime() * area * Math.ceil(depth/10) / work.getWorkersQuantity());
     }
 
-    public void calculateChipWorkCost(double thickness, double area, Work work){
-        work.setCost(work.getPrice() * area * Math.ceil(thickness/10) / work.getStandartTime() + work.getTime() * work.getPrice() / work.getStandartTime());
+    public void calculateChipWorkCost(double depth, double area, Work work){
+        work.setCost(work.getPrice() * area * Math.ceil(depth/10) / work.getStandartTime() + work.getTime() * work.getPrice() / work.getStandartTime());
     }
 
     public void calculateSurfaceWorkTime(double area, Work work){

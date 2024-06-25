@@ -130,13 +130,13 @@ public class Room {
             }
         }
     }
-    public double getPartThickness(Work work){
+    public double getPartDepth(Work work){
         switch (work.getPart()){
             case "Потолок" -> {
-                return getFloor().getThickness();
+                return getCeiling().getContaminationDepth();
             }
             case "Стены" -> {
-                return getWalls().getThickness();
+                return getWalls().getContaminationDepth();
             }
             default -> {
                 return 0;
