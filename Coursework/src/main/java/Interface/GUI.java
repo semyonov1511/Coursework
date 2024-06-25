@@ -202,6 +202,8 @@ public class GUI extends javax.swing.JFrame {
         parametersFrame.setVisible(true);
         parametersFrame.setBounds(200, 200, 430, 280);
         manager.calculateParameters();
+        costLabel.setText(String.valueOf(manager.calculator.getTotalCost()));
+        timeLabel.setText(String.valueOf(manager.calculator.getTotalTime()));
     }//GEN-LAST:event_calculateButtonActionPerformed
 
     /**

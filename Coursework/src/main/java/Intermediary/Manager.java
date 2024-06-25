@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 public class Manager {
 
     ExcelHandler handler;
-    Calculator calculator;
+    public Calculator calculator;
     Repository repository = new Repository();
     public Manager() {
         calculator = new Calculator();
