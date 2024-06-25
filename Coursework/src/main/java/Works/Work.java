@@ -12,6 +12,12 @@ public class Work {
     public int price;
     public String part;
     public double cost;
+    private double collectiveDose;
+    private double individualDose;
+
+    public double getCollectiveDose() { return collectiveDose; }
+
+    public double getIndividualDose() { return individualDose; }
 
     public String getName() {
         return name;
@@ -82,4 +88,13 @@ public class Work {
     public void setTime(double time) { this.time = time; }
 
     public void setCost(double cost) { this.cost = cost; }
+
+    public void setCollectiveDose(double collectiveDose) {
+        this.collectiveDose = collectiveDose;
+    }
+
+    public void setIndividualDose(double individualDose) {
+        this.individualDose = individualDose;
+    }
+
 }

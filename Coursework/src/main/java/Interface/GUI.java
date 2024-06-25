@@ -204,6 +204,8 @@ public class GUI extends javax.swing.JFrame {
         manager.calculateParameters();
         costLabel.setText(String.valueOf(manager.calculator.getTotalCost()));
         timeLabel.setText(String.valueOf(manager.calculator.getTotalTime()));
+        collectiveDoseLabel.setText(String.valueOf(manager.calculator.getCollectiveDose()));
+        individualDoseLabel.setText(String.valueOf(manager.calculator.getIndividualDose()));
     }//GEN-LAST:event_calculateButtonActionPerformed
 
     /**

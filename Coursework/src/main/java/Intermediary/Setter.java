@@ -33,6 +33,8 @@ public class Setter {
         room.setLength((Double) map.get(key).get("Длина"));
         room.setVolume((Double) map.get(key).get("Объем"));
         room.setWidth((Double) map.get(key).get("Ширина"));
+        room.setRadiationPower((Double) map.get(key).get("Мощность дозы излучения"));
+        room.setRadiationActivity((Double) map.get(key).get("Объемная активность излучения"));
         //return room;
     }
     public void setFloorParameters(Room room, String key){
