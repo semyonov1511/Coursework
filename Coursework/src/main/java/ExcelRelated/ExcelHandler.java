@@ -5,6 +5,8 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.*;
@@ -67,7 +69,11 @@ public class ExcelHandler {
         else {
             map.put("Название помещения", row.getCell(1).getStringCellValue());
         }
-        map.put("Расположение",row.getCell(2).getStringCellValue());
+        Pattern pattern = Pattern.compile("\\d+");
+        Matcher matcher = pattern.matcher(row.getCell(2).getStringCellValue());
+        if (matcher.find()) {
+            map.put("Расположение",Integer.parseInt(matcher.group()));
+        }
 
         map.put("Длина",row.getCell(3).getNumericCellValue());
         map.put("Ширина",row.getCell(4).getNumericCellValue());

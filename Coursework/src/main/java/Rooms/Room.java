@@ -17,6 +17,15 @@ public class Room {
     private double volume;
     private double radiationPower;
     private double radiationActivity;
+    private int storey;
+
+    public int getStorey() {
+        return storey;
+    }
+
+    public void setStorey(int storey) {
+        this.storey = storey;
+    }
 
     public void addWork(Work work){
         worksMap.put(work.getName(),work);

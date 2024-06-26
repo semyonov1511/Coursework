@@ -60,11 +60,12 @@ public class Manager {
     }
 
     public boolean isObjectsRead(){
-        return !repository.getWorksList().isEmpty();
+        return !repository.getObjectsMap().isEmpty();
     }
 
     public void calculateParameters(){
         calculator.setMap(repository.getObjectsMap());
         calculator.calculate();
+        calculator.calculateWithDistribution();
     }
 }

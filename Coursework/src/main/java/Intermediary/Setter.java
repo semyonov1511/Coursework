@@ -28,6 +28,7 @@ public class Setter {
 
     public void setRoomParameters (Room room, String key){
         room.setName(key);
+        room.setStorey((Integer) map.get(key).get("Расположение"));
         room.setArea((Double) map.get(key).get("Площадь"));
         room.setHeight((Double) map.get(key).get("Высота"));
         room.setLength((Double) map.get(key).get("Длина"));
