@@ -254,7 +254,7 @@ public class GUI extends javax.swing.JFrame {
             individualDoseLabel.setText(String.valueOf(manager.calculator.getIndividualDose()));
         }
         else {
-            warningLabel.setText("Сперма нужно импортировать данные по работам");
+            warningLabel.setText("Сперва нужно импортировать данные по работам");
             warningFrame.setBounds(400,400,550,220);
             warningFrame.setVisible(true);
         }
