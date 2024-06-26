@@ -22,7 +22,7 @@ public class GUI extends javax.swing.JFrame {
     public GUI() {
         manager = new Manager();
         initComponents();
-        manager.importObjectData();
+        manager.importObjectData(readingStatusButton);
     }
 
     @SuppressWarnings("unchecked")
@@ -30,7 +30,7 @@ public class GUI extends javax.swing.JFrame {
     private void initComponents() {
 
         parametersFrame = new javax.swing.JFrame();
-        jPanel1 = new javax.swing.JPanel();
+        parametertsPanel = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -39,6 +39,9 @@ public class GUI extends javax.swing.JFrame {
         timeLabel = new javax.swing.JLabel();
         collectiveDoseLabel = new javax.swing.JLabel();
         individualDoseLabel = new javax.swing.JLabel();
+        warningFrame = new javax.swing.JFrame();
+        warningPanel = new javax.swing.JPanel();
+        warningLabel = new javax.swing.JLabel();
         readingStatusButton = new javax.swing.JLabel();
         readWorkInfoFile = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -61,42 +64,42 @@ public class GUI extends javax.swing.JFrame {
 
         individualDoseLabel.setText("individualDoseLabel");
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout parametertsPanelLayout = new javax.swing.GroupLayout(parametertsPanel);
+        parametertsPanel.setLayout(parametertsPanelLayout);
+        parametertsPanelLayout.setHorizontalGroup(
+            parametertsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(parametertsPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(parametertsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(35, 35, 35)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(parametertsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(costLabel)
                     .addComponent(timeLabel)
                     .addComponent(collectiveDoseLabel)
                     .addComponent(individualDoseLabel))
                 .addContainerGap(72, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        parametertsPanelLayout.setVerticalGroup(
+            parametertsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(parametertsPanelLayout.createSequentialGroup()
                 .addGap(16, 16, 16)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(parametertsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(costLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(parametertsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(timeLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(parametertsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(collectiveDoseLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(parametertsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(individualDoseLabel))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -108,20 +111,55 @@ public class GUI extends javax.swing.JFrame {
             parametersFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(parametersFrameLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(parametertsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         parametersFrameLayout.setVerticalGroup(
             parametersFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(parametersFrameLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(parametertsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(15, Short.MAX_VALUE))
         );
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        warningLabel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        warningLabel.setToolTipText("");
 
-        readingStatusButton.setText("Данные по объекту успешно прочитаны");
+        javax.swing.GroupLayout warningPanelLayout = new javax.swing.GroupLayout(warningPanel);
+        warningPanel.setLayout(warningPanelLayout);
+        warningPanelLayout.setHorizontalGroup(
+            warningPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(warningPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(warningLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 610, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(17, Short.MAX_VALUE))
+        );
+        warningPanelLayout.setVerticalGroup(
+            warningPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(warningPanelLayout.createSequentialGroup()
+                .addGap(49, 49, 49)
+                .addComponent(warningLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(58, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout warningFrameLayout = new javax.swing.GroupLayout(warningFrame.getContentPane());
+        warningFrame.getContentPane().setLayout(warningFrameLayout);
+        warningFrameLayout.setHorizontalGroup(
+            warningFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(warningFrameLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(warningPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        warningFrameLayout.setVerticalGroup(
+            warningFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(warningFrameLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(warningPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         readWorkInfoFile.setText("Прочитать файл с информаций про работы");
         readWorkInfoFile.addActionListener(new java.awt.event.ActionListener() {
@@ -147,12 +185,12 @@ public class GUI extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 237, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 374, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(readWorkInfoFile, javax.swing.GroupLayout.DEFAULT_SIZE, 318, Short.MAX_VALUE)
-                    .addComponent(readingStatusButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(calculateButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(calculateButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(readingStatusButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -169,37 +207,44 @@ public class GUI extends javax.swing.JFrame {
                         .addGap(30, 30, 30))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 338, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(16, Short.MAX_VALUE))))
+                        .addContainerGap(20, Short.MAX_VALUE))))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void readWorkInfoFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_readWorkInfoFileActionPerformed
-        JFileChooser chooser = new JFileChooser();
-        chooser.setCurrentDirectory(new File("."));
-        int response = chooser.showOpenDialog(null);
-        if (chooser.getSelectedFile() == null) {
-            System.out.println("Choose a file!");
-        }
-        File file = new File(chooser.getSelectedFile().getAbsolutePath());
-        manager.importWorksData(file);
-        manager.connectObjectsWorks();
-        for (Room room : manager.getObjects().values()) {
-            DefaultMutableTreeNode concreteRoom = new DefaultMutableTreeNode(room.getName());
-            for (Work work : room.getWorks().values()){
-                DefaultMutableTreeNode concreteWork = new DefaultMutableTreeNode(work.getName());
-                concreteRoom.add(concreteWork);
+        if (manager.isObjectsRead()) {
+            JFileChooser chooser = new JFileChooser();
+            chooser.setCurrentDirectory(new File("."));
+            int response = chooser.showOpenDialog(null);
+            if (chooser.getSelectedFile() == null) {
+                System.out.println("Choose a file!");
             }
-            objects.add(concreteRoom);
+            File file = new File(chooser.getSelectedFile().getAbsolutePath());
+            manager.importWorksData(file);
+            manager.connectObjectsWorks();
+            for (Room room : manager.getObjects().values()) {
+                DefaultMutableTreeNode concreteRoom = new DefaultMutableTreeNode(room.getName());
+                for (Work work : room.getWorks().values()) {
+                    DefaultMutableTreeNode concreteWork = new DefaultMutableTreeNode(work.getName());
+                    concreteRoom.add(concreteWork);
+                }
+                objects.add(concreteRoom);
+            }
+            model = (DefaultTreeModel) objectsTree.getModel();
+            model.setRoot(objects);
+            objectsTree.setModel(model);
         }
-        model = (DefaultTreeModel) objectsTree.getModel();
-        model.setRoot(objects);
-        objectsTree.setModel(model);
+        else {
+            warningLabel.setText("Перезапустите программу, данные по объекту прочитаны некорректно");
+            warningFrame.setBounds(400,400,650,220);
+            warningFrame.setVisible(true);
+        }
     }//GEN-LAST:event_readWorkInfoFileActionPerformed
 
     private void calculateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_calculateButtonActionPerformed
-        if (manager.ifWorkRead()){
+        if (manager.isWorksRead()){
             parametersFrame.setVisible(true);
             parametersFrame.setBounds(200, 200, 430, 280);
             manager.calculateParameters();
@@ -209,7 +254,9 @@ public class GUI extends javax.swing.JFrame {
             individualDoseLabel.setText(String.valueOf(manager.calculator.getIndividualDose()));
         }
         else {
-            System.out.println("Прочитайте данные");
+            warningLabel.setText("Сперма нужно импортировать данные по работам");
+            warningFrame.setBounds(400,400,550,220);
+            warningFrame.setVisible(true);
         }
     }//GEN-LAST:event_calculateButtonActionPerformed
 
@@ -257,12 +304,15 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTree objectsTree;
     private javax.swing.JFrame parametersFrame;
+    private javax.swing.JPanel parametertsPanel;
     private javax.swing.JButton readWorkInfoFile;
     private javax.swing.JLabel readingStatusButton;
     private javax.swing.JLabel timeLabel;
+    private javax.swing.JFrame warningFrame;
+    private javax.swing.JLabel warningLabel;
+    private javax.swing.JPanel warningPanel;
     // End of variables declaration//GEN-END:variables
 }
