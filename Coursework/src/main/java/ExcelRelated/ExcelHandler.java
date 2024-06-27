@@ -1,6 +1,7 @@
 package ExcelRelated;
 
 import Works.Work;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -19,15 +20,14 @@ public class ExcelHandler {
         try (FileInputStream fis = new FileInputStream(file); Workbook workbook = new XSSFWorkbook(fis)) {
             Sheet sheet = workbook.getSheetAt(0);
             for (Row row : sheet) {
-                if (i==1) {
+                if (i == 1) {
                     list.add(setParameters(row));
                 }
                 switch (row.getCell(0).getCellType()) {
                     case STRING:
-                        i=1;
+                        i = 1;
                         break;
                 }
-
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -35,7 +35,7 @@ public class ExcelHandler {
         return list;
     }
 
-    public Map<String, Map<String, Object>> readObjects(File file) throws FileNotFoundException, IOException{
+    public Map<String, Map<String, Object>> readObjects(File file) throws FileNotFoundException, IOException {
         Map<String, Map<String, Object>> data = new HashMap<>();
 
         try (FileInputStream fileInputStream = new FileInputStream(file);
@@ -50,7 +50,7 @@ public class ExcelHandler {
                     break; // если строка пустая, то выходим из цикла
                 }
                 Map<String, Object> rowData = new HashMap<>();
-                rowData = setObjectsMap(rowData,row);
+                rowData = setObjectsMap(rowData, row);
                 data.put((String) rowData.get("Название помещения"), rowData); // ключ в формате "rowX"
                 rowIndex++;
             }
@@ -58,59 +58,66 @@ public class ExcelHandler {
         return (data);
     }
 
-    private Map<String, Object> setObjectsMap(Map<String, Object> map, Row row){
-        if (row.getCell(1).getStringCellValue().equals("Ингаляционная")){
-            switch (row.getCell(2).getStringCellValue()){
+    private Map<String, Object> setObjectsMap(Map<String, Object> map, Row row) {
+        if (row.getCell(1).getStringCellValue().equals("Ингаляционная")) {
+            switch (row.getCell(2).getStringCellValue()) {
                 case "Этаж 2" -> map.put("Название помещения", "Ингаляционная 2-й этаж");
                 case "Этаж 1" -> map.put("Название помещения", "Ингаляционная 1-й этаж");
-                default -> map.put("","");
+                default -> map.put("", "");
             }
-        }
-        else {
+        } else {
             map.put("Название помещения", row.getCell(1).getStringCellValue());
         }
         Pattern pattern = Pattern.compile("\\d+");
         Matcher matcher = pattern.matcher(row.getCell(2).getStringCellValue());
         if (matcher.find()) {
-            map.put("Расположение",Integer.parseInt(matcher.group()));
+            map.put("Расположение", Integer.parseInt(matcher.group()));
         }
 
-        map.put("Длина",row.getCell(3).getNumericCellValue());
-        map.put("Ширина",row.getCell(4).getNumericCellValue());
-        map.put("Высота",row.getCell(5).getNumericCellValue());
-        map.put("Площадь",row.getCell(6).getNumericCellValue());
-        map.put("Объем",row.getCell(7).getNumericCellValue());
-        map.put("Толщина стен",row.getCell(8).getNumericCellValue());
-        map.put("Толщина пола",row.getCell(9).getNumericCellValue());
+        map.put("Длина", row.getCell(3).getNumericCellValue());
+        map.put("Ширина", row.getCell(4).getNumericCellValue());
+        map.put("Высота", row.getCell(5).getNumericCellValue());
+        map.put("Площадь", row.getCell(6).getNumericCellValue());
+        map.put("Объем", row.getCell(7).getNumericCellValue());
+        map.put("Толщина стен", row.getCell(8).getNumericCellValue());
+        map.put("Толщина пола", row.getCell(9).getNumericCellValue());
 
-        map.put("Материал покрытия пола",row.getCell(12).getStringCellValue());
-        map.put("Площадь покрытия пола",row.getCell(13).getNumericCellValue());
-        map.put("Материал покрытия стен",row.getCell(14).getStringCellValue());
-        map.put("Площадь покрытия стен",row.getCell(15).getNumericCellValue());
-        map.put("Материал покрытия потолка",row.getCell(16).getStringCellValue());
-        map.put("Площадь покрытия потолка",row.getCell(17).getNumericCellValue());
+        map.put("Материал покрытия пола", row.getCell(12).getStringCellValue());
+        map.put("Площадь покрытия пола", row.getCell(13).getNumericCellValue());
+        map.put("Материал покрытия стен", row.getCell(14).getStringCellValue());
+        map.put("Площадь покрытия стен", row.getCell(15).getNumericCellValue());
+        map.put("Материал покрытия потолка", row.getCell(16).getStringCellValue());
+        map.put("Площадь покрытия потолка", row.getCell(17).getNumericCellValue());
 
-        map.put("Площадь загрязнения пола",row.getCell(18).getNumericCellValue());
-        map.put("Глубина загрязнения пола",row.getCell(19).getNumericCellValue());
-        map.put("Площадь загрязнения стен",row.getCell(20).getNumericCellValue());
-        map.put("Глубина загрязнения стен",row.getCell(21).getNumericCellValue());
-        map.put("Площадь загрязнения потолка",row.getCell(22).getNumericCellValue());
-        map.put("Глубина загрязнения потолка",row.getCell(23).getNumericCellValue());
+        map.put("Площадь загрязнения пола", row.getCell(18).getNumericCellValue());
+        map.put("Глубина загрязнения пола", row.getCell(19).getNumericCellValue());
+        map.put("Площадь загрязнения стен", row.getCell(20).getNumericCellValue());
+        map.put("Глубина загрязнения стен", row.getCell(21).getNumericCellValue());
+        map.put("Площадь загрязнения потолка", row.getCell(22).getNumericCellValue());
+        map.put("Глубина загрязнения потолка", row.getCell(23).getNumericCellValue());
 
-        map.put("Мощность дозы излучения",row.getCell(24).getNumericCellValue());
-        map.put("Объемная активность излучения",row.getCell(25).getNumericCellValue());
+        map.put("Мощность дозы излучения", row.getCell(24).getNumericCellValue());
+        map.put("Объемная активность излучения", row.getCell(25).getNumericCellValue());
         return map;
     }
-    
-    private Work setParameters(Row row){
+
+    private Work setParameters(Row row) {
         Work work = new Work();
         work.setRoom(row.getCell(2).getStringCellValue());
         work.setPart(row.getCell(3).getStringCellValue());
         work.setName(row.getCell(5).getStringCellValue());
         work.setType(row.getCell(7).getStringCellValue());
-        work.setPrice((int)row.getCell(8).getNumericCellValue());
-        work.setStandartTime((int)row.getCell(10).getNumericCellValue());
-        work.setWorkersQuantity((int)row.getCell(11).getNumericCellValue());
+        work.setPrice((int) row.getCell(8).getNumericCellValue());
+        work.setStandartTime((int) row.getCell(10).getNumericCellValue());
+        work.setWorkersQuantity((int) row.getCell(11).getNumericCellValue());
         return work;
+    }
+
+    public boolean checkFile(File file) throws IOException {
+        FileInputStream fileInputStream = new FileInputStream(file);
+        Workbook workbook = new XSSFWorkbook(fileInputStream);
+        Sheet sheet = workbook.getSheetAt(0);
+        Row row = sheet.getRow(0);
+        return (row.getCell(0).getStringCellValue()).equals("Номер");
     }
 }

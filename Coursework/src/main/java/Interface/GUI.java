@@ -9,6 +9,7 @@ import Rooms.Room;
 import Works.Work;
 
 import java.io.File;
+import java.io.IOException;
 import javax.swing.JFileChooser;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
@@ -31,10 +32,10 @@ public class GUI extends javax.swing.JFrame {
 
         parametersFrame = new javax.swing.JFrame();
         parametertsPanel = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        costTextLabel = new javax.swing.JLabel();
+        timeTextLabel = new javax.swing.JLabel();
+        collectiveDoseTextLabel = new javax.swing.JLabel();
+        individualDoseTextLabel = new javax.swing.JLabel();
         costLabel = new javax.swing.JLabel();
         timeLabel = new javax.swing.JLabel();
         collectiveDoseLabel = new javax.swing.JLabel();
@@ -48,13 +49,13 @@ public class GUI extends javax.swing.JFrame {
         objectsTree = new javax.swing.JTree();
         calculateButton = new javax.swing.JButton();
 
-        jLabel1.setText("Стоимость проекта:");
+        costTextLabel.setText("Стоимость проекта:");
 
-        jLabel2.setText("Время проекта:");
+        timeTextLabel.setText("Время проекта:");
 
-        jLabel3.setText("Коллективная доза:");
+        collectiveDoseTextLabel.setText("Коллективная доза:");
 
-        jLabel4.setText("Средняя индивидуальная доза:");
+        individualDoseTextLabel.setText("Средняя индивидуальная доза:");
 
         costLabel.setText("costLabel");
 
@@ -71,10 +72,10 @@ public class GUI extends javax.swing.JFrame {
             .addGroup(parametertsPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(parametertsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(costTextLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(timeTextLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(collectiveDoseTextLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(individualDoseTextLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(35, 35, 35)
                 .addGroup(parametertsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(costLabel)
@@ -88,19 +89,19 @@ public class GUI extends javax.swing.JFrame {
             .addGroup(parametertsPanelLayout.createSequentialGroup()
                 .addGap(16, 16, 16)
                 .addGroup(parametertsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(costTextLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(costLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(parametertsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(timeTextLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(timeLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(parametertsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(collectiveDoseTextLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(collectiveDoseLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(parametertsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(individualDoseTextLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(individualDoseLabel))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -164,7 +165,11 @@ public class GUI extends javax.swing.JFrame {
         readWorkInfoFile.setText("Прочитать файл с информаций про работы");
         readWorkInfoFile.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                readWorkInfoFileActionPerformed(evt);
+                try {
+                    readWorkInfoFileActionPerformed(evt);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
 
@@ -213,28 +218,32 @@ public class GUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void readWorkInfoFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_readWorkInfoFileActionPerformed
+    private void readWorkInfoFileActionPerformed(java.awt.event.ActionEvent evt) throws IOException {//GEN-FIRST:event_readWorkInfoFileActionPerformed
         if (manager.isObjectsRead()) {
             JFileChooser chooser = new JFileChooser();
             chooser.setCurrentDirectory(new File("."));
             int response = chooser.showOpenDialog(null);
-            if (chooser.getSelectedFile() == null) {
-                System.out.println("Choose a file!");
-            }
-            File file = new File(chooser.getSelectedFile().getAbsolutePath());
-            manager.importWorksData(file);
-            manager.connectObjectsWorks();
-            for (Room room : manager.getObjects().values()) {
-                DefaultMutableTreeNode concreteRoom = new DefaultMutableTreeNode(room.getName());
-                for (Work work : room.getWorks().values()) {
-                    DefaultMutableTreeNode concreteWork = new DefaultMutableTreeNode(work.getName());
-                    concreteRoom.add(concreteWork);
+            if (chooser.getSelectedFile() != null & manager.checkFile(new File(chooser.getSelectedFile().getAbsolutePath()))) {
+                File file = new File(chooser.getSelectedFile().getAbsolutePath());
+                manager.importWorksData(file);
+                manager.connectObjectsWorks();
+                for (Room room : manager.getObjects().values()) {
+                    DefaultMutableTreeNode concreteRoom = new DefaultMutableTreeNode(room.getName());
+                    for (Work work : room.getWorks().values()) {
+                        DefaultMutableTreeNode concreteWork = new DefaultMutableTreeNode(work.getName());
+                        concreteRoom.add(concreteWork);
+                    }
+                    objects.add(concreteRoom);
                 }
-                objects.add(concreteRoom);
+                model = (DefaultTreeModel) objectsTree.getModel();
+                model.setRoot(objects);
+                objectsTree.setModel(model);
             }
-            model = (DefaultTreeModel) objectsTree.getModel();
-            model.setRoot(objects);
-            objectsTree.setModel(model);
+            else{
+                warningLabel.setText("Файл выбран некорректно");
+                warningFrame.setBounds(400,400,300,220);
+                warningFrame.setVisible(true);
+            }
         }
         else {
             warningLabel.setText("Перезапустите программу, данные по объекту прочитаны некорректно");
@@ -298,12 +307,11 @@ public class GUI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton calculateButton;
     private javax.swing.JLabel collectiveDoseLabel;
+    private javax.swing.JLabel collectiveDoseTextLabel;
     private javax.swing.JLabel costLabel;
+    private javax.swing.JLabel costTextLabel;
     private javax.swing.JLabel individualDoseLabel;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel individualDoseTextLabel;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTree objectsTree;
     private javax.swing.JFrame parametersFrame;
@@ -311,6 +319,7 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JButton readWorkInfoFile;
     private javax.swing.JLabel readingStatusButton;
     private javax.swing.JLabel timeLabel;
+    private javax.swing.JLabel timeTextLabel;
     private javax.swing.JFrame warningFrame;
     private javax.swing.JLabel warningLabel;
     private javax.swing.JPanel warningPanel;

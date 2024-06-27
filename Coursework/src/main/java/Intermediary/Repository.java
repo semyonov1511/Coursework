@@ -26,10 +26,6 @@ public class Repository {
         this.objectsMap = setter.setRooms();
     }
 
-    public void addWork(Work work) {
-        worksList.add(work);
-    }
-
     public Map<String, Room> getObjectsMap(){
         return this.objectsMap;
     }

@@ -68,4 +68,8 @@ public class Manager {
         calculator.calculate();
         calculator.calculateWithDistribution();
     }
+
+    public boolean checkFile(File file) throws IOException {
+        return handler.checkFile(file);
+    }
 }

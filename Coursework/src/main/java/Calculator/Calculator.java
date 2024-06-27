@@ -77,8 +77,6 @@ public class Calculator {
                     collectiveDose += calculateCollectiveDose(randomPower.nextNormal(), work);
                 }
             }
-            System.out.println(collectiveDose);
-            System.out.println(individualDose);
             individualDose /= totalWorks;
             collectiveResults[i] = collectiveDose;
             individualResults[i] = individualDose;

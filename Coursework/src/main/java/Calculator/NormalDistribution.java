@@ -38,7 +38,7 @@ public class NormalDistribution {
         // Set the type of histogram to frequency
         dataset.setType(HistogramType.FREQUENCY);
 
-        dataset.addSeries("Histogram", results, 100);
+        dataset.addSeries("Histogram", results, 80);
 
         // Create a JFreeChart instance
         JFreeChart chart = ChartFactory.createHistogram(
