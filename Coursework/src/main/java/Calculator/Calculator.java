@@ -66,11 +66,12 @@ public class Calculator {
         double individualDose = 0;
         double collectiveResults[] = new double[10000];
         double individualResults[] = new double[10000];
+        NormalDistribution randomPower = null;
         for (int i = 0; i < 10000; i++) {
             collectiveDose = 0;
             individualDose = 0;
             for (Room room : this.map.values()) {
-                NormalDistribution randomPower = new NormalDistribution(room.getRadiationPower(), room.getRadiationPower() * 0.05 * room.getRadiationPower());
+                randomPower = new NormalDistribution(room.getRadiationPower(), room.getRadiationPower() * 0.05 * room.getRadiationPower());
                 for (Work work : room.getWorks().values()) {
                     totalWorks += 1;
                     individualDose += calculateIndividualDose(randomPower.nextNormal(), work);
@@ -82,8 +83,8 @@ public class Calculator {
             individualResults[i] = individualDose;
         }
 
-        NormalDistribution.createHistogram("Collective dose distribution", collectiveResults);
-        NormalDistribution.createHistogram("Individual dose distribution", individualResults);
+        randomPower.createHistogram("Collective dose distribution", collectiveResults);
+        randomPower.createHistogram("Individual dose distribution", individualResults);
     }
 
     private void calculateChipWorkTime(double depth, double area, Work work) {

@@ -12,10 +12,6 @@ public class Setter {
     Row row;
     Room room;
 
-    public void setRoom(Room room){
-        this.room = room;
-    }
-
     public void setRow(Row row){
         this.row = row;
     }
@@ -79,7 +75,7 @@ public class Setter {
         room.getCeiling().setContaminationDepth(row.getCell(23).getNumericCellValue());
     }
 
-    public Work setWorkParameters(Row row) {
+    public Work setWorkParameters() {
         Work work = new Work();
         work.setRoom(row.getCell(2).getStringCellValue());
         work.setPart(row.getCell(3).getStringCellValue());

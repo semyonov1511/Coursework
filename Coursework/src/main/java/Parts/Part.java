@@ -5,10 +5,10 @@ import Works.Work;
 import java.util.ArrayList;
 
 public class Part {
-    private String coatingMaterial; // материал покрыт
-    private double contaminationArea; // площадь загрязнения
-    private double contaminationDepth; // глубина загрязнения
-    private double coverageArea; // площадь покрытия
+    private String coatingMaterial;
+    private double contaminationArea;
+    private double contaminationDepth;
+    private double coverageArea;
     private ArrayList<Work> worksList;
 
     public void setWorksList(ArrayList<Work> worksList){

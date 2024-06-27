@@ -100,27 +100,27 @@ public class Room {
     }
 
     public void addFloor(){
-        partsMap.put("Пол",new Floor());
+        partsMap.put("Пол",new ExtendedPart());
     }
 
     public void addWalls(){
-        partsMap.put("Стены",new Walls());
+        partsMap.put("Стены",new ExtendedPart());
     }
 
     public void addCeiling(){
-        partsMap.put("Потолок",new Ceiling());
+        partsMap.put("Потолок",new Part());
     }
 
-    public Floor getFloor(){
-        return (Floor) partsMap.get("Пол");
+    public ExtendedPart getFloor(){
+        return (ExtendedPart) partsMap.get("Пол");
     }
 
-    public Walls getWalls(){
-        return (Walls) partsMap.get("Стены");
+    public ExtendedPart getWalls(){
+        return (ExtendedPart) partsMap.get("Стены");
     }
 
-    public Ceiling getCeiling(){
-        return (Ceiling) partsMap.get("Потолок");
+    public Part getCeiling(){
+        return (Part) partsMap.get("Потолок");
     }
 
     public double getPartArea(Work work){

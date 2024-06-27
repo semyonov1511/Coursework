@@ -8,8 +8,6 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.*;
@@ -18,14 +16,15 @@ public class ExcelHandler {
 
     Setter setter = new Setter();
 
-    public ArrayList<Work> readWorks(File file) throws FileNotFoundException, IOException {
+    public ArrayList<Work> readWorks(File file) throws IOException {
         int i = 0;
         ArrayList<Work> list = new ArrayList<>();
         try (FileInputStream fis = new FileInputStream(file); Workbook workbook = new XSSFWorkbook(fis)) {
             Sheet sheet = workbook.getSheetAt(0);
             for (Row row : sheet) {
+                setter.setRow(row);
                 if (i == 1) {
-                    list.add(setter.setWorkParameters(row));
+                    list.add(setter.setWorkParameters());
                 }
                 switch (row.getCell(0).getCellType()) {
                     case STRING:
@@ -47,13 +46,13 @@ public class ExcelHandler {
         try (FileInputStream fileInputStream = new FileInputStream(file);
              Workbook workbook = new XSSFWorkbook(fileInputStream)) {
 
-            Sheet sheet = workbook.getSheetAt(0); // выбираем первый лист
+            Sheet sheet = workbook.getSheetAt(0);
 
-            int rowIndex = 5; // начинаем с 6-й строки
+            int rowIndex = 5;
             while (true) {
                 Row row = sheet.getRow(rowIndex);
                 if (row == null) {
-                    break; // если строка пустая, то выходим из цикла
+                    break;
                 }
                 setter.setRow(row);
                 Room room = setter.setRooms();
@@ -73,7 +72,7 @@ public class ExcelHandler {
         return (row.getCell(0).getStringCellValue().equals("Номер"));
     }
 
-    public static boolean isXlsxFile(File file) {
+    public boolean isXlsxFile(File file) {
         if (!file.isFile()) {
             return false;
         }
