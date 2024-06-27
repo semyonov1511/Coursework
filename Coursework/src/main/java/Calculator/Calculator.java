@@ -32,6 +32,10 @@ public class Calculator {
 
     public void calculate(Map<String, Room> map) {
         int totalWorks = 0;
+        collectiveDose = 0;
+        individualDose = 0;
+        totalCost = 0;
+        totalTime = 0;
         for (Room room : map.values()) {
             for (Work work : room.getWorks().values()) {
                 totalWorks += 1;
@@ -56,13 +60,12 @@ public class Calculator {
     }
 
     public void calculateWithDistribution(Map<String, Room> map) {
-        int totalWorks = 0;
-        double collectiveDose = 0;
-        double individualDose = 0;
+        int totalWorks;
         double collectiveResults[] = new double[10000];
         double individualResults[] = new double[10000];
         NormalDistribution randomPower = null;
         for (int i = 0; i < 10000; i++) {
+            totalWorks = 0;
             collectiveDose = 0;
             individualDose = 0;
             for (Room room : map.values()) {

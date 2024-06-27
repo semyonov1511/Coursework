@@ -24,7 +24,7 @@ public class Manager {
 
     public void importObjectData(JLabel readingStatusButton) {
         try {
-            File file = new File("Вар2_приложение1.xlsx");
+            File file = new File("Objects.xlsx");
             if (!handler.checkFile(file,"Код помещения")){
                 throw new Exception();
             }
@@ -75,7 +75,7 @@ public class Manager {
 
     public void calculateParameters(){
         calculator.calculate(repository.getObjectsMap());
-        //calculator.calculateWithDistribution(repository.getObjectsMap());
+        calculator.calculateWithDistribution(repository.getObjectsMap());
     }
 
     public boolean checkWorksFile(File file) throws IOException {

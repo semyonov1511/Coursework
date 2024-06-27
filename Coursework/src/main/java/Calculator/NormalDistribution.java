@@ -29,7 +29,7 @@ public class NormalDistribution {
     public void createHistogram(String text, double[] results){
         HistogramDataset dataset = new HistogramDataset();
         dataset.setType(HistogramType.FREQUENCY);
-        dataset.addSeries("Histogram", results, 80);
+        dataset.addSeries("Histogram", results, 50);
         JFreeChart chart = ChartFactory.createHistogram(
                 text,
                 "Value",

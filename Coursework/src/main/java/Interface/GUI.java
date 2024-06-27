@@ -13,6 +13,7 @@ import java.io.IOException;
 import javax.swing.JFileChooser;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
+import javax.swing.tree.TreeModel;
 
 public class GUI extends javax.swing.JFrame {
 
@@ -235,6 +236,7 @@ public class GUI extends javax.swing.JFrame {
             chooser.setCurrentDirectory(new File("."));
             int response = chooser.showOpenDialog(null);
             if (chooser.getSelectedFile() != null && manager.checkWorksFile(new File(chooser.getSelectedFile().getAbsolutePath()))) {
+                DefaultMutableTreeNode objects = new DefaultMutableTreeNode("Objects");
                 File file = new File(chooser.getSelectedFile().getAbsolutePath());
                 manager.importWorksData(file);
                 manager.connectObjectsWorks();
