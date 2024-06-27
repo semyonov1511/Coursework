@@ -1,65 +1,94 @@
 package Intermediary;
 
 import Rooms.Room;
+import Works.Work;
+import org.apache.poi.ss.usermodel.Row;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Setter {
-    Map<String, Map<String, Object>> map;
 
-    public void setMap(Map<String, Map<String, Object>> map) { this.map = map; }
+    Row row;
+    Room room;
 
-    public Map<String, Room> setRooms(){
-        Map<String, Room> roomsMap = new HashMap<>();
-        for (String key : map.keySet()) {
-            Room room = new Room();
-            room.addFloor();
-            room.addWalls();
-            room.addCeiling();
-            setRoomParameters(room, key);
-            setFloorParameters(room, key);
-            setWallsParameters(room,key);
-            setCeilingParameters(room,key);
-            roomsMap.put(room.getName(), room);
+    public void setRoom(Room room){
+        this.room = room;
+    }
+
+    public void setRow(Row row){
+        this.row = row;
+    }
+
+    public Room setRooms(){
+        this.room = new Room();
+        room.addFloor();
+        room.addWalls();
+        room.addCeiling();
+        setRoomParameters();
+        setFloorParameters();
+        setWallsParameters();
+        setCeilingParameters();
+        return room;
+    }
+
+    private void setRoomParameters (){
+        if (row.getCell(1).getStringCellValue().equals("Ингаляционная")) {
+            switch (row.getCell(2).getStringCellValue()) {
+                case "Этаж 2" -> room.setName("Ингаляционная 2-й этаж");
+                case "Этаж 1" -> room.setName("Ингаляционная 1-й этаж");
+                default -> room.setName("Комната");
+            }
+        } else {
+            room.setName(row.getCell(1).getStringCellValue());
         }
-        return roomsMap;
+        Pattern pattern = Pattern.compile("\\d+");
+        Matcher matcher = pattern.matcher(row.getCell(2).getStringCellValue());
+        if (matcher.find()) {
+            room.setStorey(Integer.parseInt(matcher.group()));
+        }
+
+        room.setLength(row.getCell(3).getNumericCellValue());
+        room.setWidth(row.getCell(4).getNumericCellValue());
+        room.setHeight(row.getCell(5).getNumericCellValue());
+        room.setArea(row.getCell(6).getNumericCellValue());
+        room.setVolume(row.getCell(7).getNumericCellValue());
+        room.setRadiationPower(row.getCell(24).getNumericCellValue());
+        room.setRadiationActivity(row.getCell(25).getNumericCellValue());
+    }
+    private void setFloorParameters(){
+        room.getFloor().setThickness(row.getCell(9).getNumericCellValue());
+        room.getFloor().setCoatingMaterial(row.getCell(12).getStringCellValue());
+        room.getFloor().setCoverageArea(row.getCell(13).getNumericCellValue());
+        room.getFloor().setContaminationArea(row.getCell(18).getNumericCellValue());
+        room.getFloor().setContaminationDepth(row.getCell(19).getNumericCellValue());
     }
 
-    public void setRoomParameters (Room room, String key){
-        room.setName(key);
-        room.setStorey((Integer) map.get(key).get("Расположение"));
-        room.setArea((Double) map.get(key).get("Площадь"));
-        room.setHeight((Double) map.get(key).get("Высота"));
-        room.setLength((Double) map.get(key).get("Длина"));
-        room.setVolume((Double) map.get(key).get("Объем"));
-        room.setWidth((Double) map.get(key).get("Ширина"));
-        room.setRadiationPower((Double) map.get(key).get("Мощность дозы излучения"));
-        room.setRadiationActivity((Double) map.get(key).get("Объемная активность излучения"));
-        //return room;
-    }
-    public void setFloorParameters(Room room, String key){
-        room.getFloor().setThickness((Double) map.get(key).get("Толщина пола"));
-        room.getFloor().setCoatingMaterial((String) map.get(key).get("Материал покрытия пола"));
-        room.getFloor().setContaminationArea((Double) map.get(key).get("Площадь загрязнения пола"));
-        room.getFloor().setContaminationDepth((Double) map.get(key).get("Глубина загрязнения пола"));
-        room.getFloor().setCoverageArea((Double) map.get(key).get("Площадь покрытия пола"));
+    private void setWallsParameters(){
+        room.getWalls().setThickness(row.getCell(8).getNumericCellValue());
+        room.getWalls().setCoatingMaterial(row.getCell(14).getStringCellValue());
+        room.getWalls().setCoverageArea(row.getCell(15).getNumericCellValue());
+        room.getWalls().setContaminationArea(row.getCell(20).getNumericCellValue());
+        room.getWalls().setContaminationDepth(row.getCell(21).getNumericCellValue());
     }
 
-    public void setWallsParameters(Room room, String key){
-        room.getWalls().setThickness((Double) map.get(key).get("Толщина стен"));
-        room.getWalls().setCoatingMaterial((String) map.get(key).get("Материал покрытия стен"));
-        room.getWalls().setContaminationArea((Double) map.get(key).get("Площадь загрязнения стен"));
-        room.getWalls().setContaminationDepth((Double) map.get(key).get("Глубина загрязнения стен"));
-        room.getWalls().setCoverageArea((Double) map.get(key).get("Площадь покрытия стен"));
+    private void setCeilingParameters(){
+        room.getCeiling().setCoatingMaterial(row.getCell(16).getStringCellValue());
+        room.getCeiling().setCoverageArea(row.getCell(17).getNumericCellValue());
+        room.getCeiling().setContaminationArea(row.getCell(22).getNumericCellValue());
+        room.getCeiling().setContaminationDepth(row.getCell(23).getNumericCellValue());
     }
 
-    public void setCeilingParameters(Room room, String key){
-        room.getCeiling().setCoatingMaterial((String) map.get(key).get("Материал покрытия потолка"));
-        room.getCeiling().setContaminationArea((Double) map.get(key).get("Площадь загрязнения потолка"));
-        room.getCeiling().setContaminationDepth((Double) map.get(key).get("Глубина загрязнения потолка"));
-        room.getCeiling().setCoverageArea((Double) map.get(key).get("Площадь покрытия потолка"));
+    public Work setWorkParameters(Row row) {
+        Work work = new Work();
+        work.setRoom(row.getCell(2).getStringCellValue());
+        work.setPart(row.getCell(3).getStringCellValue());
+        work.setName(row.getCell(5).getStringCellValue());
+        work.setType(row.getCell(7).getStringCellValue());
+        work.setPrice((int) row.getCell(8).getNumericCellValue());
+        work.setStandartTime((int) row.getCell(10).getNumericCellValue());
+        work.setWorkersQuantity((int) row.getCell(11).getNumericCellValue());
+        return work;
     }
-
 
 }

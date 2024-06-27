@@ -9,7 +9,6 @@ import java.util.Map;
 
 public class Repository {
 
-    Setter setter = new Setter();
     ArrayList<Work> worksList = new ArrayList<Work>();
     Map<String, Room> objectsMap = new HashMap<>();
 
@@ -21,9 +20,8 @@ public class Repository {
         return this.worksList;
     }
 
-    public void setObjectsMap(Map<String, Map<String, Object>> objectsMap) {
-        setter.setMap(objectsMap);
-        this.objectsMap = setter.setRooms();
+    public void setObjectsMap(Map<String, Room> objectsMap) {
+        this.objectsMap = objectsMap;
     }
 
     public Map<String, Room> getObjectsMap(){

@@ -82,39 +82,39 @@ public class Calculator {
             individualResults[i] = individualDose;
         }
 
-        NormalDistribution.createHistogram("Collective", collectiveResults);
-        NormalDistribution.createHistogram("Individual", individualResults);
+        NormalDistribution.createHistogram("Collective dose distribution", collectiveResults);
+        NormalDistribution.createHistogram("Individual dose distribution", individualResults);
     }
 
-    public void calculateChipWorkTime(double depth, double area, Work work) {
+    private void calculateChipWorkTime(double depth, double area, Work work) {
         work.setTime(work.getStandartTime() * area * Math.ceil(depth / 10) / work.getWorkersQuantity());
     }
 
-    public void calculateChipWorkCost(double depth, double area, Work work) {
+    private void calculateChipWorkCost(double depth, double area, Work work) {
         work.setCost(work.getPrice() * area * Math.ceil(depth / 10) / work.getStandartTime() + work.getTime() * work.getPrice() / work.getStandartTime());
     }
 
-    public void calculateSurfaceWorkTime(double area, Work work) {
+    private void calculateSurfaceWorkTime(double area, Work work) {
         work.setTime(work.getStandartTime() * area / work.getWorkersQuantity());
     }
 
-    public void calclulateSurfaceWorkCost(double area, Work work) {
+    private void calclulateSurfaceWorkCost(double area, Work work) {
         work.setCost(work.getPrice() * area / work.getStandartTime() + work.getTime() * work.getPrice() / work.getStandartTime());
     }
 
-    public void calculateCollectiveDose(Work work, Room room) {
+    private void calculateCollectiveDose(Work work, Room room) {
         work.setCollectiveDose(room.getRadiationPower() * work.getTime() * work.getWorkersQuantity());
     }
 
-    public void calculateIndividualDose(Work work, Room room) {
+    private void calculateIndividualDose(Work work, Room room) {
         work.setIndividualDose(room.getRadiationPower() * work.getTime());
     }
 
-    public double calculateIndividualDose(double power, Work work) {
+    private double calculateIndividualDose(double power, Work work) {
         return (power * work.getTime());
     }
 
-    public double calculateCollectiveDose(double power, Work work) {
+    private double calculateCollectiveDose(double power, Work work) {
         return (power * work.getTime() * work.getWorkersQuantity());
     }
 
