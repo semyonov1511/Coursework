@@ -9,7 +9,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Calculator {
-    Map<String, Room> map = new HashMap<>();
     private double totalCost = 0;
     private double totalTime = 0;
     private double individualDose;
@@ -31,13 +30,9 @@ public class Calculator {
         return this.collectiveDose;
     }
 
-    public void setMap(Map<String, Room> map) {
-        this.map = map;
-    }
-
-    public void calculate() {
+    public void calculate(Map<String, Room> map) {
         int totalWorks = 0;
-        for (Room room : this.map.values()) {
+        for (Room room : map.values()) {
             for (Work work : room.getWorks().values()) {
                 totalWorks += 1;
                 double area = room.getPartArea(work);
@@ -60,7 +55,7 @@ public class Calculator {
         this.individualDose /= totalWorks;
     }
 
-    public void calculateWithDistribution() {
+    public void calculateWithDistribution(Map<String, Room> map) {
         int totalWorks = 0;
         double collectiveDose = 0;
         double individualDose = 0;
@@ -70,7 +65,7 @@ public class Calculator {
         for (int i = 0; i < 10000; i++) {
             collectiveDose = 0;
             individualDose = 0;
-            for (Room room : this.map.values()) {
+            for (Room room : map.values()) {
                 randomPower = new NormalDistribution(room.getRadiationPower(), room.getRadiationPower() * 0.05 * room.getRadiationPower());
                 for (Work work : room.getWorks().values()) {
                     totalWorks += 1;

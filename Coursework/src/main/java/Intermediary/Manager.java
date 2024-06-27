@@ -24,10 +24,16 @@ public class Manager {
 
     public void importObjectData(JLabel readingStatusButton) {
         try {
-            repository.setObjectsMap(handler.readObjects(new File("Вар2_приложение1.xlsx")));
+            File file = new File("Вар2_приложение1.xlsx");
+            if (!handler.checkFile(file,"Код помещения")){
+                throw new Exception();
+            }
+            repository.setObjectsMap(handler.readObjects(file));
             readingStatusButton.setText("Данные по объекту успешно прочитаны");
         } catch (IOException ex) {
-            readingStatusButton.setText("При чтении данных по объекту произошла ошибка");
+            readingStatusButton.setText("Файла не обнаружено");
+        } catch (Exception e) {
+            readingStatusButton.setText("Содержимое файла некорректно");
         }
     }
 
@@ -63,13 +69,16 @@ public class Manager {
         return !repository.getObjectsMap().isEmpty();
     }
 
-    public void calculateParameters(){
-        calculator.setMap(repository.getObjectsMap());
-        calculator.calculate();
-        calculator.calculateWithDistribution();
+    public boolean checkObjectsFile(File file) throws IOException{
+        return handler.checkFile(file,"Код помещения");
     }
 
-    public boolean checkFile(File file) throws IOException {
-        return handler.checkFile(file);
+    public void calculateParameters(){
+        calculator.calculate(repository.getObjectsMap());
+        //calculator.calculateWithDistribution(repository.getObjectsMap());
+    }
+
+    public boolean checkWorksFile(File file) throws IOException {
+        return handler.checkFile(file,"Номер");
     }
 }

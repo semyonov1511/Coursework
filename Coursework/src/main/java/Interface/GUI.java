@@ -48,6 +48,7 @@ public class GUI extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         objectsTree = new javax.swing.JTree();
         calculateButton = new javax.swing.JButton();
+        exitButton = new javax.swing.JButton();
 
         costTextLabel.setText("Стоимость проекта:");
 
@@ -184,6 +185,13 @@ public class GUI extends javax.swing.JFrame {
             }
         });
 
+        exitButton.setText("Выйти");
+        exitButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                exitButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -195,7 +203,8 @@ public class GUI extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(readWorkInfoFile, javax.swing.GroupLayout.DEFAULT_SIZE, 318, Short.MAX_VALUE)
                     .addComponent(calculateButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(readingStatusButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(readingStatusButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(exitButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -205,8 +214,10 @@ public class GUI extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(readWorkInfoFile, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(42, 42, 42)
+                        .addGap(18, 18, 18)
                         .addComponent(calculateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(exitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(readingStatusButton, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(30, 30, 30))
@@ -223,7 +234,7 @@ public class GUI extends javax.swing.JFrame {
             JFileChooser chooser = new JFileChooser();
             chooser.setCurrentDirectory(new File("."));
             int response = chooser.showOpenDialog(null);
-            if (chooser.getSelectedFile() != null & manager.checkFile(new File(chooser.getSelectedFile().getAbsolutePath()))) {
+            if (chooser.getSelectedFile() != null && manager.checkWorksFile(new File(chooser.getSelectedFile().getAbsolutePath()))) {
                 File file = new File(chooser.getSelectedFile().getAbsolutePath());
                 manager.importWorksData(file);
                 manager.connectObjectsWorks();
@@ -269,6 +280,10 @@ public class GUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_calculateButtonActionPerformed
 
+    private void exitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitButtonActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_exitButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -310,6 +325,7 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JLabel collectiveDoseTextLabel;
     private javax.swing.JLabel costLabel;
     private javax.swing.JLabel costTextLabel;
+    private javax.swing.JButton exitButton;
     private javax.swing.JLabel individualDoseLabel;
     private javax.swing.JLabel individualDoseTextLabel;
     private javax.swing.JScrollPane jScrollPane1;

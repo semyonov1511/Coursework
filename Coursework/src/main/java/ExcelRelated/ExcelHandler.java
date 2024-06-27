@@ -63,13 +63,14 @@ public class ExcelHandler {
         return (roomsMap);
     }
 
-    public boolean checkFile(File file) throws IOException {
+    public boolean checkFile(File file, String text) throws IOException {
         FileInputStream fileInputStream = new FileInputStream(file);
         if (!isXlsxFile(file)) { return false; }
         Workbook workbook = new XSSFWorkbook(fileInputStream);
         Sheet sheet = workbook.getSheetAt(0);
         Row row = sheet.getRow(0);
-        return (row.getCell(0).getStringCellValue().equals("Номер"));
+        if (!row.getCell(0).getCellType().equals(CellType.STRING)) { return false; }
+        return (row.getCell(0).getStringCellValue().equals(text));
     }
 
     public boolean isXlsxFile(File file) {
