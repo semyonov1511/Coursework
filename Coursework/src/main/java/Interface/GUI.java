@@ -24,7 +24,7 @@ public class GUI extends javax.swing.JFrame {
     public GUI() {
         manager = new Manager();
         initComponents();
-        manager.importObjectData(readingStatusButton);
+        manager.importObjectData(readingStatusLabel);
     }
 
     @SuppressWarnings("unchecked")
@@ -44,7 +44,7 @@ public class GUI extends javax.swing.JFrame {
         warningFrame = new javax.swing.JFrame();
         warningPanel = new javax.swing.JPanel();
         warningLabel = new javax.swing.JLabel();
-        readingStatusButton = new javax.swing.JLabel();
+        readingStatusLabel = new javax.swing.JLabel();
         readWorkInfoFile = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         objectsTree = new javax.swing.JTree();
@@ -204,7 +204,7 @@ public class GUI extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(readWorkInfoFile, javax.swing.GroupLayout.DEFAULT_SIZE, 318, Short.MAX_VALUE)
                     .addComponent(calculateButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(readingStatusButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(readingStatusLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(exitButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -220,7 +220,7 @@ public class GUI extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(exitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(readingStatusButton, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(readingStatusLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(30, 30, 30))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 338, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -230,6 +230,10 @@ public class GUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Проверяет, прочитаны ли объекты и выбран ли корректный файл работ, в случае корректности создает новую TreeNode с привязанными
+     * к комнатам работами, в ином случае - вызывает окно с предупреждением.
+     */
     private void readWorkInfoFileActionPerformed(java.awt.event.ActionEvent evt) throws IOException {//GEN-FIRST:event_readWorkInfoFileActionPerformed
         if (manager.isObjectsRead()) {
             JFileChooser chooser = new JFileChooser();
@@ -265,6 +269,10 @@ public class GUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_readWorkInfoFileActionPerformed
 
+    /**
+     * Проверяет, прочитаны ли работы, в случае корректности запускает процесс расчета параметров
+     * и выызывает окно с ними, в ином случае - вызывает окно с предупреждением.
+     */
     private void calculateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_calculateButtonActionPerformed
         if (manager.isWorksRead()){
             parametersFrame.setVisible(true);
@@ -282,6 +290,9 @@ public class GUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_calculateButtonActionPerformed
 
+    /**
+     * Осуществляет выход из программы
+     */
     private void exitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitButtonActionPerformed
         System.exit(0);
     }//GEN-LAST:event_exitButtonActionPerformed
@@ -335,7 +346,7 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JFrame parametersFrame;
     private javax.swing.JPanel parametertsPanel;
     private javax.swing.JButton readWorkInfoFile;
-    private javax.swing.JLabel readingStatusButton;
+    private javax.swing.JLabel readingStatusLabel;
     private javax.swing.JLabel timeLabel;
     private javax.swing.JLabel timeTextLabel;
     private javax.swing.JFrame warningFrame;

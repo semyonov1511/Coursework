@@ -19,6 +19,12 @@ public class NormalDistribution {
         this.stdDev = stdDev;
     }
 
+    /**
+     * Возвращает случайную double величину по закону нормального распределения с заданными в конструкторе
+     * класса математическим ожиданием и отклонением
+     *
+     * @return случайную двоичную величину
+     */
     public double nextNormal() {
         double gaussian = random.nextGaussian();
         gaussian *= stdDev;
@@ -26,6 +32,13 @@ public class NormalDistribution {
         return gaussian;
     }
 
+    /**
+     * Создает гисторамму по данному массиву результатов и отображает в новом окне
+     *
+     * @param text название гистограммы
+     *
+     * @param results массив данных, на основе которых нужно построить гистограммы
+     */
     public void createHistogram(String text, double[] results){
         HistogramDataset dataset = new HistogramDataset();
         dataset.setType(HistogramType.FREQUENCY);

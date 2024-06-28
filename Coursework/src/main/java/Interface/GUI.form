@@ -210,7 +210,7 @@
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Component id="readWorkInfoFile" alignment="0" pref="318" max="32767" attributes="0"/>
                   <Component id="calculateButton" max="32767" attributes="0"/>
-                  <Component id="readingStatusButton" alignment="1" max="32767" attributes="0"/>
+                  <Component id="readingStatusLabel" alignment="1" max="32767" attributes="0"/>
                   <Component id="exitButton" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -229,7 +229,7 @@
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="exitButton" min="-2" pref="56" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
-                      <Component id="readingStatusButton" min="-2" pref="38" max="-2" attributes="0"/>
+                      <Component id="readingStatusLabel" min="-2" pref="38" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
@@ -242,7 +242,7 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JLabel" name="readingStatusButton">
+    <Component class="javax.swing.JLabel" name="readingStatusLabel">
     </Component>
     <Component class="javax.swing.JButton" name="readWorkInfoFile">
       <Properties>

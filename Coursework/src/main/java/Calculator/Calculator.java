@@ -30,6 +30,12 @@ public class Calculator {
         return this.collectiveDose;
     }
 
+    /**
+     * Проходит по всем работам всех комнат и для каждой ставит свои посчитанные
+     * параметры (стоимость, время, коллективные и индивидуальные дозы
+     *
+     * @param map - коллекция комнат с привязанными к ним работами
+     */
     public void calculate(Map<String, Room> map) {
         int totalWorks = 0;
         collectiveDose = 0;
@@ -59,6 +65,12 @@ public class Calculator {
         this.individualDose /= totalWorks;
     }
 
+    /**
+     * Проводит 10000 экспериментов, для каждого считает коллективные и индивидуальные дозы с учетом нормального
+     * распределения мощности дозы излучения и записывает результат в массивы.
+     * 
+     * @param map - коллекция комнат с привязанными к ним работами
+     */
     public void calculateWithDistribution(Map<String, Room> map) {
         int totalWorks;
         double collectiveResults[] = new double[10000];

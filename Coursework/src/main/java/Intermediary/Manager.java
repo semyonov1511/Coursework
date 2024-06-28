@@ -22,18 +22,27 @@ public class Manager {
         handler = new ExcelHandler();
     }
 
-    public void importObjectData(JLabel readingStatusButton) {
+    /**
+     * Вызывается при запуске программы, автоматически подгружает файл с объектами.
+     *
+     * @throws IOException в случае проблем с доступом к файлу.
+     *
+     * @throws Exception если содержимое файла некорректно.
+     * 
+     * @param readingStatusLabel - компонент графического интерфейса, в котором отображается статус загрузки файла с объектами.
+     */
+    public void importObjectData(JLabel readingStatusLabel) {
         try {
             File file = new File("Objects.xlsx");
             if (!handler.checkFile(file,"Код помещения")){
                 throw new Exception();
             }
             repository.setObjectsMap(handler.readObjects(file));
-            readingStatusButton.setText("Данные по объекту успешно прочитаны");
+            readingStatusLabel.setText("Данные по объекту успешно прочитаны");
         } catch (IOException ex) {
-            readingStatusButton.setText("Файла не обнаружено");
+            readingStatusLabel.setText("Файла не обнаружено");
         } catch (Exception e) {
-            readingStatusButton.setText("Содержимое файла некорректно");
+            readingStatusLabel.setText("Содержимое файла некорректно");
         }
     }
 
@@ -49,6 +58,9 @@ public class Manager {
         return repository.getObjectsMap();
     }
 
+    /**
+     * Привязывает работы к их помещениям с помощью ключей Map'ы комнат и атрибута Room у работ.
+     */
     public void connectObjectsWorks(){
         for (String key : getObjects().keySet()) {
             ArrayList<Work> filteredWorks = (ArrayList<Work>) repository.getWorksList().stream()
@@ -67,10 +79,6 @@ public class Manager {
 
     public boolean isObjectsRead(){
         return !repository.getObjectsMap().isEmpty();
-    }
-
-    public boolean checkObjectsFile(File file) throws IOException{
-        return handler.checkFile(file,"Код помещения");
     }
 
     public void calculateParameters(){
